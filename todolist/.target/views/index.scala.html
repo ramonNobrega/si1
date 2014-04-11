@@ -24,7 +24,7 @@
     <ul>
         @for(task <- tasks) {
            <li>
-           		@task.label
+           		<h4>Tarefa: @task.label; Projeto Associado: @task.projeto; Prioridade: @task.prioridade</h4>
            	
                 @form(routes.Application.update(task.getId())) {
                         <input type="submit" value="Tarefa Concluída!">
