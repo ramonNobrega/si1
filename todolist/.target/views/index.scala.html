@@ -3,9 +3,8 @@
 @import helper._
  
 @main("Todo list") {
-   
-    <div><h1>@tasks.size() tarefa(s)</h1></div>
-   
+
+	@Collections.sort(tasks)
    
     <div>
     <h2>Adicionar uma nova tarefa</h2>
@@ -27,9 +26,9 @@
     </div>      
        
    
-    <ul>
+    <div>
+    	<h2>Tarefas a fazer</h2>
         @for(task <- tasks) {
-           <li>
            @if(!task.isConcluido()){
            		<h4>Tarefa: @task.label; Projeto Associado: @task.projeto; Prioridade: @task.prioridade</h4>
            		<div class="botao-tarefas">
@@ -42,17 +41,18 @@
                 }
                 </div>
            }
-            </li>
         }
-    </ul>
+    </div>
     
     <div>
     	<h2>Tarefas Concluídas</h2>
     	@for(task <- tasks) {
 	    	@if(task.isConcluido()){
-    			<h4>@task.label </h4><br>
+    			<h4>@task.label</h4>
     		}
     	}
     </div>
-       
+
+	<div><h2>Total: @tasks.size() tarefa(s)</h2></div>
+          
 }

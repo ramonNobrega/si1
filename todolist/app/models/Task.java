@@ -8,7 +8,7 @@ import play.data.validation.Constraints.*;
 import javax.persistence.*;
 
 @Entity
-public class Task extends Model {
+public class Task extends Model implements Comparable<Task>{
 
 	private boolean concluido = false;
 	
@@ -86,6 +86,19 @@ public class Task extends Model {
 
 	public void setConcluido(boolean concluido) {
 		this.concluido = concluido;
+	}
+
+	@Override
+	public int compareTo(Task t) {
+		int result;
+		if (prioridade >= ((Task) t).prioridade) {
+			result = 1;
+		} else if (prioridade == ((Task) t).prioridade) {
+			result = 0;
+		} else {
+			result = -1;
+		}
+		return result;
 	}
 
 }
