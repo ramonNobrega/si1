@@ -11,14 +11,12 @@
     <h2>Adicionar uma nova tarefa</h2>
     
     @form(routes.Application.newTask()) {
-   		<form><input type="text" name="nome" class="form-control" placeholder="Nome da tarefa" maxlength="200" required></form>
-   		<form><input type="text" name="projeto" class="form-control" placeholder="Projeto Associado" maxlength="200" required></form>
-   		<form><input type="text" name="prioridade" class="form-control" placeholder="Prioridade" maxlength="200" required></form>   		 
-<!--    @inputText(taskForm("Nome"), '_label->"Nome")
-        @inputText(taskForm("Projeto Associado"), '_label->"Projeto")	
-        @inputText(taskForm("Prioridade (a partir de 1)"), '_label->"Descrição") -->
-
+		<form action="@routes.Application.newTask()" method="post">
+        	<input type="text" name="nome" class="form-control" placeholder="Nome da tarefa" maxlength="200" required></form>
+        	<input type="text" name="projeto" class="form-control" placeholder="Projeto Associado" maxlength="200" required />
+        	<input type="text" name="prioridade" class="form-control" placeholder="Prioridade" maxlength="200" required>
         <input type="submit" value="Criar!">
+		</form>
     </div>       
         
     

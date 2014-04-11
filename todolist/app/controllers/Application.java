@@ -23,7 +23,9 @@ public class Application extends Controller {
 		if (filledForm.hasErrors()) {
 			return badRequest(views.html.index.render(Task.all(), filledForm));
 		} else {
+			System.out.println("QUantidade de tasks antes: " + Task.all().size());
 			Task.create(filledForm.get());
+			System.out.println("QUantidade de tasks depois: " + Task.all().size());
 			return redirect(routes.Application.tasks());
 		}
 	}
