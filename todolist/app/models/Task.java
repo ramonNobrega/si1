@@ -15,6 +15,12 @@ public class Task extends Model {
 
 	@Required
 	public String label;
+	
+	@Required
+	public String projeto;
+	
+	@Required
+	public int prioridade;
 
 	public static Finder<Long, Task> find = new Finder<Long, Task>(Long.class, Task.class);
 

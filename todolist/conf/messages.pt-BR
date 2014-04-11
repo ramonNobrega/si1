@@ -1,0 +1,3 @@
+constraint.required = Obrigatório
+error.required = Campo obrigatório
+error.invalid = Valor inválido
