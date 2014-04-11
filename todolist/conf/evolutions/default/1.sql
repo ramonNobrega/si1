@@ -5,6 +5,7 @@
 
 create table task (
   id                        bigint not null,
+  concluido                 boolean,
   label                     varchar(255),
   projeto                   varchar(255),
   prioridade                integer,

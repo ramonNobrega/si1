@@ -4,20 +4,30 @@
 
 @main("Todo list") {
     
+    <div><h1>@tasks.size() tarefa(s)</h1></div>
+    
+    
+    <div>
     <h2>Adicionar uma nova tarefa</h2>
     
     @form(routes.Application.newTask()) {
-        
-        @inputText(taskForm("Nome"))	@inputText(taskForm("Projeto Associado"))	@inputText(taskForm("Prioridade (a partir de 1)"))
-        
+   		<form><input type="text" name="nome" class="form-control" placeholder="Nome da tarefa" maxlength="200" required></form>
+   		<form><input type="text" name="projeto" class="form-control" placeholder="Projeto Associado" maxlength="200" required></form>
+   		<form><input type="text" name="prioridade" class="form-control" placeholder="Prioridade" maxlength="200" required></form>   		 
+<!--    @inputText(taskForm("Nome"), '_label->"Nome")
+        @inputText(taskForm("Projeto Associado"), '_label->"Projeto")	
+        @inputText(taskForm("Prioridade (a partir de 1)"), '_label->"Descrição") -->
+
         <input type="submit" value="Criar!">
+    </div>       
         
-    <h1>@tasks.size() tarefa(s)</h1>
     
     <ul>
         @for(task <- tasks) {
             <li>
-                <div>Nome: @task.label</div>
+                @form(routes.Application.update(task.getId())) {
+                  	<input type="submit" value="Tarefa Concluída!">
+          		}
                 
                 @form(routes.Application.deleteTask(task.id)) {
                     <input type="submit" value="Excluir!">

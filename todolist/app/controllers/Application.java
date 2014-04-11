@@ -2,9 +2,8 @@ package controllers;
 
 import models.Task;
 import play.*;
-import play.data.Form;
+import play.data.*;
 import play.mvc.*;
-
 import views.html.*;
 
 public class Application extends Controller {
@@ -34,4 +33,8 @@ public class Application extends Controller {
 		return redirect(routes.Application.tasks());
 	}
 
+	public static Result update(Long id) {
+		Task.update(id);
+		return redirect(routes.Application.tasks());
+	}
 }
