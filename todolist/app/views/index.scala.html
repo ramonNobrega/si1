@@ -1,50 +1,51 @@
 @(tasks: List[Task], taskForm: Form[Task])
 <link rel="stylesheet" href="/public/stylesheets/style.css"> 
 @import helper._
- 
-@main("Todo list") {
 
+@main("Todo list") {
 	@Collections.sort(tasks)
+	<body style="background:#4682B4">
+	<h1 class="titulo" style="text-align:center;font-family:Arial;">Agenda de Tarefas</h1>
    
-    <div>
+    <div id="adiciona" style="text-align:center;font-family:Arial;">
     <h2>Adicionar uma nova tarefa</h2>
    
         <form action="@routes.Application.newTask()" method="post">
                 
                 <input type="text" name="label" class="form-control" placeholder="Nome da tarefa" maxlength="200" required />
                 <input type="text" name="projeto" class="form-control" placeholder="Projeto Associado" maxlength="200" required />
-                <select name="prioridade" class="span2">
-	                <option value=1 >1</option>
-	                <option value=2 >2</option>
-	                <option value=3 >3</option>
-					<option value=4 >4</option>
-					<option value=5 >5</option>
+                <select name="prioridade" class="opcoes">
+	                <option "value=1 >1 (Urgente)</option>
+	                <option value=2 >2 (Médio prazo)</option>
+	                <option value=3 >3 (Longo prazo)</option>
+					<option value=4 >4 (Despreocupado)</option>
 				</select>
         		
         		<input type="submit" value="Criar!">
         </form>
     </div>      
        
+	<div id="titulo" style="text-align:center;font-family:Arial;"><h2>Total: @tasks.size() tarefa(s)</h2></div><br>
    
-    <div>
+    <div class="tabela" style="float:left;margin-left:250px;margin-right:5px;font-family:Arial;">
     	<h2>Tarefas a fazer</h2>
         @for(task <- tasks) {
            @if(!task.isConcluido()){
-           		<h4>Tarefa: @task.label; Projeto Associado: @task.projeto; Prioridade: @task.prioridade</h4>
-           		<div class="botao-tarefas">
+           		<h4 style="float:left;">Tarefa: @task.label; Projeto Associado: @task.projeto; Prioridade: @task.prioridade</h4><br>
+           		<div class="botao-tarefas" style="float:right;margin: 15px">
                 	@form(routes.Application.update(task.id)) {
                         <input type="submit" value="Tarefa Concluída!">
                 }
-               	</div><div class="botao-tarefas">
+               	</div><div class="botao-tarefas" style="float:right;margin:15px;">
                 @form(routes.Application.deleteTask(task.id)) {
                     <input type="submit" value="Excluir!">
                 }
-                </div>
+                </div><br>
            }
         }
     </div>
     
-    <div>
+    <div class="tabela" style="float:right;margin-right:250px;margin-left:5px;font-family:Arial;">
     	<h2>Tarefas Concluídas</h2>
     	@for(task <- tasks) {
 	    	@if(task.isConcluido()){
@@ -52,7 +53,5 @@
     		}
     	}
     </div>
-
-	<div><h2>Total: @tasks.size() tarefa(s)</h2></div>
-          
+	</body>
 }

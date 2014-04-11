@@ -2,3 +2,12 @@
   text-align: right;
   width: 140px;
 }
+
+titulo {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+body {
+  color: #333333;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
